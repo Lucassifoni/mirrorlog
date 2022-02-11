@@ -4,7 +4,6 @@ defmodule Mirrorlog.Work.Evaluation do
 
   schema "evaluations" do
     field :iinputs, :map
-    field :member_id, :integer
     field :outputs, :map
     field :session_id, :integer
 
@@ -14,7 +13,7 @@ defmodule Mirrorlog.Work.Evaluation do
   @doc false
   def changeset(evaluation, attrs) do
     evaluation
-    |> cast(attrs, [:member_id, :session_id, :iinputs, :outputs])
-    |> validate_required([:member_id, :session_id, :iinputs, :outputs])
+    |> cast(attrs, [:session_id, :iinputs, :outputs])
+    |> validate_required([:session_id, :iinputs, :outputs])
   end
 end

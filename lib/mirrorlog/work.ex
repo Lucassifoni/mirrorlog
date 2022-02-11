@@ -101,4 +101,19 @@ defmodule Mirrorlog.Work do
   def change_project(%Project{} = project, attrs \\ %{}) do
     Project.changeset(project, attrs)
   end
+
+  def create_attachment_with_upload(%Plug.Upload{} = upload) do
+    uploaded = Mirrorlog.Tasks.Uploads.place_upload(upload)
+    {:ok, content} = File.read(uploaded.file_path)
+    hash = :crypto.hash(:md5, content) |> Base.encode16
+
+    %Mirrorlog.Work.Attachment{}
+      |> Mirrorlog.Work.Attachment.changeset(%{
+        "hash" => hash,
+        "mime" => upload.content_type,
+        "original_filename" => Slug.slugify(upload.filename),
+        "storage_path" => uploaded.db_file_path,
+      })
+      |> Repo.insert()
+  end
 end

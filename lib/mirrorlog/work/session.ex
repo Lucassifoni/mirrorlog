@@ -11,7 +11,6 @@ defmodule Mirrorlog.Work.Session do
     field :end_pv, :float
     field :end_roc, :float
     field :goal, :string
-    field :member_id, :integer
     field :next_session_id, :integer
     field :outcome, :string
     field :previous_session_id, :integer
@@ -30,7 +29,7 @@ defmodule Mirrorlog.Work.Session do
   @doc false
   def changeset(session, attrs) do
     session
-    |> cast(attrs, [:surface_id, :member_id, :previous_session_id, :next_session_id, :stroke_id, :type, :tool_id, :comments, :goal, :start_roc, :end_roc, :start_conic, :end_conic, :start_pv, :end_pv, :outcome, :date_start, :short_note, :duration, :efficiency])
-    |> validate_required([:surface_id, :member_id, :previous_session_id, :next_session_id, :stroke_id, :type, :tool_id, :comments, :goal, :start_roc, :end_roc, :start_conic, :end_conic, :start_pv, :end_pv, :outcome, :date_start, :short_note, :duration, :efficiency])
+    |> cast(attrs, [:surface_id, :previous_session_id, :next_session_id, :stroke_id, :type, :tool_id, :comments, :goal, :start_roc, :end_roc, :start_conic, :end_conic, :start_pv, :end_pv, :outcome, :date_start, :short_note, :duration, :efficiency])
+    |> validate_required([:surface_id, :previous_session_id, :next_session_id, :stroke_id, :type, :tool_id, :comments, :goal, :start_roc, :end_roc, :start_conic, :end_conic, :start_pv, :end_pv, :outcome, :date_start, :short_note, :duration, :efficiency])
   end
 end

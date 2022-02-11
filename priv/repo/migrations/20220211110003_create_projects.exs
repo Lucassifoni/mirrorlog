@@ -3,7 +3,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateProjects do
 
   def change do
     create table(:projects) do
-      add :member_id, :integer
       add :name, :text
       add :status, :integer
       add :main_picture_id, :integer
@@ -13,7 +12,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateProjects do
     end
 
     create table(:projects_pictures) do
-      add :member_id, :integer
       add :project_id, :integer
       add :picture_id, :integer
     end

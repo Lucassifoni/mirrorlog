@@ -4,7 +4,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateSurfaces do
   def change do
     create table(:surfaces) do
       add :optic_id, :integer
-      add :member_id, :integer
       add :type, :integer
       add :radius, :float
       add :conic, :float

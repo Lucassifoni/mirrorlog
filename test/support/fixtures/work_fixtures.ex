@@ -13,7 +13,6 @@ defmodule Mirrorlog.WorkFixtures do
       |> Enum.into(%{
         date_start: ~N[2022-02-10 11:00:00],
         main_picture_id: 42,
-        member_id: 42,
         name: "some name",
         status: 42
       })

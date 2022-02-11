@@ -4,7 +4,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateSessions do
   def change do
     create table(:sessions) do
       add :surface_id, :integer
-      add :member_id, :integer
       add :previous_session_id, :integer
       add :next_session_id, :integer
       add :stroke_id, :integer
@@ -28,7 +27,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateSessions do
     end
 
     create table(:sessions_pictures) do
-      add :member_id, :integer
       add :project_id, :integer
       add :picture_id, :integer
     end

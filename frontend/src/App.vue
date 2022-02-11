@@ -1,21 +1,46 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import AppMenu from './components/AppMenu.vue';
 </script>
-
+ 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div class="dev_plate">
+    <div class="mobile-like appview_mobile">
+      <app-menu></app-menu>
+      <router-view></router-view>
+    </div>
+    <div class="laptop-like appview_laptop">
+      <app-menu></app-menu>
+      <router-view></router-view>
+    </div>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+.dev_plate {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #333;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .mobile-like {
+    width: 320px;
+    height: 540px;
+    background: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .laptop-like {
+    width: 800px;
+    height: 600px;
+    background: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 }
 </style>

@@ -4,7 +4,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateTools do
   def change do
     create table(:tools) do
       add :project_id, :integer
-      add :member_id, :integer
       add :diameter, :float
       add :thickness, :float
       add :radius, :float

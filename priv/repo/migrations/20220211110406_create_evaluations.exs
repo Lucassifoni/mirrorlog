@@ -3,7 +3,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateEvaluations do
 
   def change do
     create table(:evaluations) do
-      add :member_id, :integer
       add :session_id, :integer
       add :iinputs, :map
       add :outputs, :map

@@ -3,7 +3,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateAttachments do
 
   def change do
     create table(:attachments) do
-      add :member_id, :integer
       add :hash, :text
       add :storage_path, :text
       add :original_filename, :text

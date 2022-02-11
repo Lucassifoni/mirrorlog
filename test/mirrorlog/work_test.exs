@@ -8,7 +8,7 @@ defmodule Mirrorlog.WorkTest do
 
     import Mirrorlog.WorkFixtures
 
-    @invalid_attrs %{date_start: nil, main_picture_id: nil, member_id: nil, name: nil, status: nil}
+    @invalid_attrs %{date_start: nil, main_picture_id: nil,  name: nil, status: nil}
 
     test "list_projects/0 returns all projects" do
       project = project_fixture()
@@ -21,12 +21,11 @@ defmodule Mirrorlog.WorkTest do
     end
 
     test "create_project/1 with valid data creates a project" do
-      valid_attrs = %{date_start: ~N[2022-02-10 11:00:00], main_picture_id: 42, member_id: 42, name: "some name", status: 42}
+      valid_attrs = %{date_start: ~N[2022-02-10 11:00:00], main_picture_id: 42, name: "some name", status: 42}
 
       assert {:ok, %Project{} = project} = Work.create_project(valid_attrs)
       assert project.date_start == ~N[2022-02-10 11:00:00]
       assert project.main_picture_id == 42
-      assert project.member_id == 42
       assert project.name == "some name"
       assert project.status == 42
     end
@@ -37,12 +36,11 @@ defmodule Mirrorlog.WorkTest do
 
     test "update_project/2 with valid data updates the project" do
       project = project_fixture()
-      update_attrs = %{date_start: ~N[2022-02-11 11:00:00], main_picture_id: 43, member_id: 43, name: "some updated name", status: 43}
+      update_attrs = %{date_start: ~N[2022-02-11 11:00:00], main_picture_id: 43,  name: "some updated name", status: 43}
 
       assert {:ok, %Project{} = project} = Work.update_project(project, update_attrs)
       assert project.date_start == ~N[2022-02-11 11:00:00]
       assert project.main_picture_id == 43
-      assert project.member_id == 43
       assert project.name == "some updated name"
       assert project.status == 43
     end

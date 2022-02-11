@@ -4,7 +4,6 @@ defmodule Mirrorlog.Repo.Migrations.CreateOptics do
   def change do
     create table(:optics) do
       add :project_id, :integer
-      add :member_id, :integer
       add :type, :integer
       add :name, :text
       add :glass_id, :integer

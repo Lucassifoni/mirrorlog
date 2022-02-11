@@ -5,6 +5,13 @@ defmodule Mirrorlog.Application do
 
   use Application
 
+  # Compile-time env
+  @mix_env System.get_env("MIX_ENV")
+
+  def mix_env() do
+    @mix_env
+  end
+
   @impl true
   def start(_type, _args) do
     children = [

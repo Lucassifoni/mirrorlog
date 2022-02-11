@@ -7,7 +7,6 @@ defmodule Mirrorlog.Work.Optic do
     field :date_start, :naive_datetime
     field :diameter, :float
     field :glass_id, :integer
-    field :member_id, :integer
     field :name, :string
     field :project_id, :integer
     field :status, :integer
@@ -20,7 +19,7 @@ defmodule Mirrorlog.Work.Optic do
   @doc false
   def changeset(optic, attrs) do
     optic
-    |> cast(attrs, [:project_id, :member_id, :type, :name, :glass_id, :status, :diameter, :thickness, :date_start, :date_end])
-    |> validate_required([:project_id, :member_id, :type, :name, :glass_id, :status, :diameter, :thickness, :date_start, :date_end])
+    |> cast(attrs, [:project_id, :type, :name, :glass_id, :status, :diameter, :thickness, :date_start, :date_end])
+    |> validate_required([:project_id, :type, :name, :glass_id, :status, :diameter, :thickness, :date_start, :date_end])
   end
 end

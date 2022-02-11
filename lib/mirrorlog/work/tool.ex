@@ -5,7 +5,6 @@ defmodule Mirrorlog.Work.Tool do
   schema "tools" do
     field :comments, :string
     field :diameter, :float
-    field :member_id, :integer
     field :picture_id, :integer
     field :project_id, :integer
     field :radius, :float
@@ -19,7 +18,7 @@ defmodule Mirrorlog.Work.Tool do
   @doc false
   def changeset(tool, attrs) do
     tool
-    |> cast(attrs, [:project_id, :member_id, :diameter, :thickness, :radius, :type, :picture_id, :comments, :short_note])
-    |> validate_required([:project_id, :member_id, :diameter, :thickness, :radius, :type, :picture_id, :comments, :short_note])
+    |> cast(attrs, [:project_id, :diameter, :thickness, :radius, :type, :picture_id, :comments, :short_note])
+    |> validate_required([:project_id, :diameter, :thickness, :radius, :type, :picture_id, :comments, :short_note])
   end
 end
