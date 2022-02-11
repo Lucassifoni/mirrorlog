@@ -26,5 +26,11 @@ defmodule Mirrorlog.Repo.Migrations.CreateSessions do
 
       timestamps()
     end
+
+    create table(:sessions_pictures) do
+      add :member_id, :integer
+      add :project_id, :integer
+      add :picture_id, :integer
+    end
   end
 end

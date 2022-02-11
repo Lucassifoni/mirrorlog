@@ -6,14 +6,14 @@ defmodule Mirrorlog.Work.Stroke do
     field :expression, :string
     field :name, :string
     field :picture_id, :integer
-
+    field :member_id, :integer
     timestamps()
   end
 
   @doc false
   def changeset(stroke, attrs) do
     stroke
-    |> cast(attrs, [:picture_id, :name, :expression])
-    |> validate_required([:picture_id, :name, :expression])
+    |> cast(attrs, [:picture_id, :member_id, :name, :expression])
+    |> validate_required([:picture_id, :member_id, :name, :expression])
   end
 end

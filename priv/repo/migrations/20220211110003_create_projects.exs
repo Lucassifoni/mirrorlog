@@ -11,5 +11,11 @@ defmodule Mirrorlog.Repo.Migrations.CreateProjects do
 
       timestamps()
     end
+
+    create table(:projects_pictures) do
+      add :member_id, :integer
+      add :project_id, :integer
+      add :picture_id, :integer
+    end
   end
 end
