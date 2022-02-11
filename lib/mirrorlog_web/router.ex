@@ -14,6 +14,7 @@ defmodule MirrorlogWeb.Router do
   end
 
   pipeline :api do
+    plug :fetch_session
     plug :accepts, ["json"]
     plug :protect_from_forgery
   end
@@ -28,6 +29,8 @@ defmodule MirrorlogWeb.Router do
   scope "/api", MirrorlogWeb do
      pipe_through :api
 
+     get "/projects", ApiController, :get_projects
+     post "/project_wizard", ApiController, :create_project_from_wizard
   end
 
   # Enables LiveDashboard only for development

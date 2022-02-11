@@ -7,6 +7,9 @@ defmodule Mirrorlog.Work do
   alias Mirrorlog.Repo
 
   alias Mirrorlog.Work.Project
+  alias Mirrorlog.Work.Optic
+  alias Mirrorlog.Work.Glass
+  alias Mirrorlog.Work.Surface
 
   @doc """
   Returns the list of projects.
@@ -53,6 +56,32 @@ defmodule Mirrorlog.Work do
     %Project{}
     |> Project.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def create_optic(attrs \\ %{}) do
+    %Optic{}
+    |> Optic.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_surface(attrs \\ %{}) do
+    %Surface{}
+    |> Surface.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_glass(attrs \\ %{}) do
+    %Glass{}
+    |> Glass.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def get_or_create_glass_by_name(name) do
+    case (from(g in Glass, where: g.name == ^name) |> Repo.one()) do
+      nil -> {:ok, g} = create_glass(%{"name" => name })
+             g
+      %Glass{} = g -> g
+    end
   end
 
   @doc """

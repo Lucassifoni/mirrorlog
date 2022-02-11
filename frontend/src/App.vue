@@ -1,21 +1,20 @@
 <script setup>
-import AppMenu from './components/AppMenu.vue';
+import RealApp from './RealApp.vue';
 </script>
  
 <template>
   <div class="dev_plate">
     <div class="mobile-like appview_mobile">
-      <app-menu></app-menu>
-      <router-view></router-view>
+      <real-app></real-app>
     </div>
     <div class="laptop-like appview_laptop">
-      <app-menu></app-menu>
-      <router-view></router-view>
+      <real-app></real-app>
     </div>
   </div>
 </template>
 
 <style lang="scss">
+
 .dev_plate {
   width: 100vw;
   height: 100vh;
