@@ -5,7 +5,8 @@ defmodule Mirrorlog.Work.Evaluation do
   schema "evaluations" do
     field :iinputs, :map
     field :outputs, :map
-    field :session_id, :integer
+
+    belongs_to :session, Mirrorlog.Work.Session
 
     timestamps()
   end

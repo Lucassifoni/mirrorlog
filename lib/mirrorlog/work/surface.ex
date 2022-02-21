@@ -7,10 +7,12 @@ defmodule Mirrorlog.Work.Surface do
     field :conic, :float
     field :date_end, :naive_datetime
     field :date_start, :naive_datetime
-    field :optic_id, :integer
     field :radius, :float
     field :status, :integer
     field :type, :integer
+
+    belongs_to :optic, Mirrorlog.Work.Optic
+    has_many :sessions, Mirrorlog.Work.Session
 
     timestamps()
   end

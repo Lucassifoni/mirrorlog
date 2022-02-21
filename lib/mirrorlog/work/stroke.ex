@@ -5,7 +5,8 @@ defmodule Mirrorlog.Work.Stroke do
   schema "strokes" do
     field :expression, :string
     field :name, :string
-    field :picture_id, :integer
+    belongs_to :picture, Mirrorlog.Work.Attachment
+
     timestamps()
   end
 

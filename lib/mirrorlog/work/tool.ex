@@ -5,8 +5,8 @@ defmodule Mirrorlog.Work.Tool do
   schema "tools" do
     field :comments, :string
     field :diameter, :float
-    field :picture_id, :integer
-    field :project_id, :integer
+    belongs_to :picture, Mirrorlog.Work.Attachment
+    belongs_to :project, Mirrorlog.Work.Project
     field :radius, :float
     field :short_note, :string
     field :thickness, :float

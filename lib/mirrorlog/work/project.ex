@@ -2,12 +2,16 @@ defmodule Mirrorlog.Work.Project do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @derive {Jason.Encoder, only: [:name, :status, :main_picture_id, :date_start]}
   schema "projects" do
     field :date_start, :naive_datetime
-    field :main_picture_id, :integer
     field :name, :string
     field :status, :integer
+
+    belongs_to :main_picture, Mirrorlog.Work.Attachment
+
+    has_many :optics, Mirrorlog.Work.Optic
+    has_many :tools, Mirrorlog.Work.Tool
+    has_many :sessions, Mirrorlog.Work.Session
 
     timestamps()
   end

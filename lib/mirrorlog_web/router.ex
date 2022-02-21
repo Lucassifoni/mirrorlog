@@ -30,6 +30,7 @@ defmodule MirrorlogWeb.Router do
      pipe_through :api
 
      get "/projects", ApiController, :get_projects
+     get "/project/:id", ApiController, :get_project
      post "/project_wizard", ApiController, :create_project_from_wizard
   end
 
