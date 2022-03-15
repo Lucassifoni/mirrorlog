@@ -1,20 +1,20 @@
 <template>
     <div class="page_home">
-        {{ $t('hello') }}
+        {{ $t('Welcome to the Mirrorlog app') }}
         <hr class="mt-2 mb-2">
         <div v-if="projects.length === 0">
             {{ $t('No projects yet') }}
-            <router-link to="/project/new" class="mt-2 block rounded p-2 bg-emerald-900 hover:bg-emerald-700 text-white">{{ $t('Create your first project') }}</router-link>
+            <router-link to="/project/new" class="btn">{{ $t('Create your first project') }}</router-link>
         </div>
         <div v-else>
-            {{ $t('Projects') }}
-            <div class="bg-slate-200 hover:bg-slate-300 cursor-pointer rounded mb-2 p-2 shadow-md"
+            <strong>{{ $t('Projects') }}</strong>
+            <div class="tile"
                 @click="$router.push(`/project/${project.id}`)"
                 v-for="project in projects" :key="project.id">
-            {{ project.name }}<br><time>{{ project.date_start.slice(0, 10) }}</time>
-            {{ project.optics.length }} optiques<br>
-            {{ project.optics.reduce((c, a) => a.surfaces.length + c, 0) }} surfaces
+            {{ project.name }}<br><time>{{ new Date(project.date_start).toLocaleString($i18n.locale).slice(0, 9) }}</time><br>
+            {{ project.optics.length }} optiques / {{ project.optics.reduce((c, a) => a.surfaces.length + c, 0) }} surfaces
             </div>
+            <router-link to="/project/new" class="btn">{{ $t('Create another project') }}</router-link>
         </div>
     </div>
 </template>
@@ -34,5 +34,10 @@
 </script>
 
 <style lang="scss">
-
+.tile {
+    @apply bg-slate-200 hover:bg-slate-300 cursor-pointer rounded mb-2 p-2 shadow-md;
+}
+.btn {
+    @apply mt-2 block rounded p-2 bg-emerald-900 hover:bg-emerald-700 text-white;
+}
 </style>

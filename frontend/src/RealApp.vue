@@ -10,7 +10,7 @@
 </script>
 
 <template>
-<div class="bg-emerald-900 mh-full p-2 pt-4 relative">
+<div class="bg-emerald-900 min-h-full p-2 pt-4 relative">
     <app-menu></app-menu>
     <div class="mt-8 rounded bg-white p-4">
         <router-view></router-view>

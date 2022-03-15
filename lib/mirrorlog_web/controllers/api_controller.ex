@@ -169,8 +169,7 @@ defmodule MirrorlogWeb.ApiController do
       db_optic |> Map.put(:surfaces, db_surfaces)
                |> Map.put(:glass, db_glass)
     end)
-    inserted = Map.put(db_project, :optics, db_optics)
 
-    conn |> json(inserted)
+    get_project(conn, %{"id" => db_project.id})
   end
 end
