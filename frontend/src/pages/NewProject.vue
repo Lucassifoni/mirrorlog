@@ -1,21 +1,7 @@
 <script>
 import {api_post} from './../utils';
-
-const surface = () => ({
-    conic: 0,
-    radius: 100,
-    status: 0,
-    type: 0,
-});
-
-const optic = () => ({
-    name: '',
-    diameter: 1,
-    glass: '',
-    thickness: 1,
-    type: 0,
-    surfaces: [surface()],
-});
+import {api_routes} from './../api';
+import {surface, optic} from '../models';
 
 export default {
     name: "NewProject",
@@ -34,7 +20,7 @@ export default {
     },
     methods: {
         async create_project() {
-            const r = await api_post('/api/project_wizard', this.project);
+            const r = await api_post(api_routes.project_wizard(), this.project);
             this.$router.push('/');
         },
         add_surface() {

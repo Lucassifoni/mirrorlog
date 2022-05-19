@@ -32,6 +32,6 @@ defmodule Mirrorlog.Work.Session do
   def changeset(session, attrs) do
     session
     |> cast(attrs, [:surface_id, :project_id, :previous_session_id, :next_session_id, :stroke_id, :type, :tool_id, :comments, :goal, :start_roc, :end_roc, :start_conic, :end_conic, :start_pv, :end_pv, :outcome, :date_start, :short_note, :duration, :efficiency])
-    |> validate_required([:surface_id, :project_id, :previous_session_id, :next_session_id, :stroke_id, :type, :tool_id, :comments, :goal, :start_roc, :end_roc, :start_conic, :end_conic, :start_pv, :end_pv, :outcome, :date_start, :short_note, :duration, :efficiency])
+    |> validate_required([:surface_id, :project_id])
   end
 end

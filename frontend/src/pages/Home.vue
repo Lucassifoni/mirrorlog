@@ -20,6 +20,8 @@
 </template>
 
 <script>
+    import {api_routes} from './../api';
+
     export default {
         name: 'Home',
         data() {
@@ -28,7 +30,7 @@
             };
         },
         async mounted() {
-            this.projects = await (await (fetch('/api/projects'))).json();
+            this.projects = await api_get(api_routes.get_projects());
         }
     };
 </script>

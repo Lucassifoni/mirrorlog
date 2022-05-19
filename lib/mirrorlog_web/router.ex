@@ -32,6 +32,7 @@ defmodule MirrorlogWeb.Router do
      get "/projects", ApiController, :get_projects
      get "/project/:id", ApiController, :get_project
      post "/project_wizard", ApiController, :create_project_from_wizard
+     post "/project/:pid/surface/:sid/add_session", ApiController, :create_session
   end
 
   # Enables LiveDashboard only for development

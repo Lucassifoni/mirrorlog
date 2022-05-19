@@ -10,6 +10,7 @@ defmodule Mirrorlog.Work do
   alias Mirrorlog.Work.Optic
   alias Mirrorlog.Work.Glass
   alias Mirrorlog.Work.Surface
+  alias Mirrorlog.Work.Session
 
   @doc """
   Returns the list of projects.
@@ -39,6 +40,10 @@ defmodule Mirrorlog.Work do
 
   """
   def get_project!(id), do: Repo.get!(Project, id)
+
+  def get_surface!(id), do: Repo.get!(Surface, id)
+
+  def get_optic!(id), do: Repo.get!(Optic, id)
 
   @doc """
   Creates a project.
@@ -102,6 +107,12 @@ defmodule Mirrorlog.Work do
     |> Repo.update()
   end
 
+  def update_session(%Session{} = session, attrs) do
+    session
+    |> Session.changeset(attrs)
+    |> Repo.update()
+  end
+
   @doc """
   Deletes a project.
 
@@ -129,6 +140,37 @@ defmodule Mirrorlog.Work do
   """
   def change_project(%Project{} = project, attrs \\ %{}) do
     Project.changeset(project, attrs)
+  end
+
+  def get_last_session_for_surface(%Surface{} = surface) do
+    (from(s in Session, where: s.surface_id == ^(surface.id), order_by: [desc: s.id], limit: 1))
+      |> Repo.one()
+  end
+
+  def set_next_session_id_to_session(%Session{} = previous_session, %Session{} = next_session) do
+    previous_session
+    |> update_session(%{
+      "next_session_id" => next_session.id
+    })
+  end
+
+  def create_empty_session_for_surface(%Surface{} = surface) do
+    previous_session = get_last_session_for_surface(surface)
+    optic = get_optic!(surface.optic_id)
+
+    {:ok, session} = %Session{}
+    |> Session.changeset(%{
+        "surface_id" => surface.id,
+        "project_id" => optic.project_id,
+        "previous_session_id" => (if previous_session, do: previous_session.id, else: nil)
+    })
+    |> Repo.insert()
+
+    case previous_session do
+      nil -> {:ok, session}
+      ps -> set_next_session_id_to_session(ps, session.id)
+        {:ok, session}
+    end
   end
 
   def create_attachment_with_upload(%Plug.Upload{} = upload) do

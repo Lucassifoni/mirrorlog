@@ -143,7 +143,7 @@ defmodule MirrorlogWeb.ApiController do
       "status" => s,
       "date_start" => "#{d}T00:00:00" |> NaiveDateTime.from_iso8601!()
     })
-    db_optics = optics |> Enum.map(fn o ->
+    _ = optics |> Enum.map(fn o ->
       db_glass = Mirrorlog.Work.get_or_create_glass_by_name(Map.get(o, "glass", "bk7"))
 
       {:ok, db_optic} = Mirrorlog.Work.create_optic(%{
@@ -171,5 +171,13 @@ defmodule MirrorlogWeb.ApiController do
     end)
 
     get_project(conn, %{"id" => db_project.id})
+  end
+
+  def create_session(conn, %{"pid" => project_id, "sid" => surface_id }) do
+    project = Mirrorlog.Work.get_project!(project_id)
+    surface = Mirrorlog.Work.get_surface!(surface_id)
+    {:ok, session} = Mirrorlog.Work.create_empty_session_for_surface(surface)
+
+    conn |> json(map_assoc(session, &transform_session/1))
   end
 end

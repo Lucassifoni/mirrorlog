@@ -17,3 +17,8 @@ export const routes = [
         props: true,
     }
 ];
+
+export const route_fns = {
+    project: id => `/project/${id}`,
+    session: (pid, sid) => `${route_fns.project(pid)}/session/${sid}`,
+};
