@@ -1,6 +1,7 @@
 import Home from '../pages/Home.vue';
 import NewProject from '../pages/NewProject.vue';
 import Project from '../pages/Project.vue';
+import SessionEditor from '../pages/SessionEditor.vue';
 
 export const routes = [
     {
@@ -14,6 +15,11 @@ export const routes = [
     {
         path: '/project/:id',
         component: Project,
+        props: true,
+    },
+    {
+        path: '/project/:project_id/session/:session_id',
+        component: SessionEditor,
         props: true,
     }
 ];

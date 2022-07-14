@@ -21,7 +21,7 @@
 
 <script>
     import {api_routes} from './../api';
-
+    import { api_get } from '../utils';
     export default {
         name: 'Home',
         data() {
